@@ -1,0 +1,27 @@
+*{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    /* transition: 2s; */
+}
+li:hover{
+    background-color: #f6f8f9;
+}
+#removal{
+    float: right;
+}
+
+#upd{
+    float: right;
+}
+ol{
+    margin: 2em 10em 0em 10em;
+}
+hr{
+    margin: 0em;
+    color: #dfe6e8;
+}
+li{
+    padding: 0.8em 0em 0.2em 0;
+}
+#mainn{
+    margin: 2em 10em 0em 12em;
+}
