@@ -16,11 +16,49 @@ app.use(bodyParser.json())
 app.listen(port, function(){
     console.log(`Process is running at Port number ${port}`);
     db.connect();
+    fillList();
 })
 
-app.post('/list', (request,response)=>{
-    console.log(request.body);
+app.post('/add', (request,response)=>{
+    let data = request.body
+    console.log(data);
+    taskArray.push(data)
+    db.dataAdd(data)
+    // db.dataSend({'task': request.body})
     response.status(200)
-    db.dataSend({'task': request.body})
-    
+})
+
+app.post('/del', (request,response)=>{
+    let data = Object.values(request.body)[0];
+    //to get the value from the object which we are getting
+    let data1 = request.body
+    console.log(data1);
+    console.log(data);
+    let index = taskArray.indexOf(data);
+    taskArray.splice(index,1)
+    db.dataDel(data)
+    // db.dataSend({'task': request.body})
+    response.status(200)
+})
+app.post('/update', (request, response)=>{
+    let newData = Object.values(request.body)[1];
+    let oldData = Object.values(request.body)[0];
+    console.log(oldData)
+    console.log(newData)
+    let index = taskArray.indexOf(oldData);
+    taskArray[index] = newData;
+    db.updateData(oldData,newData);
+
+})
+
+function fillList(){
+    db.dataSendBack(function(body){
+        for(i = 0; i<body.length;i++){
+            taskArray.push(body[i])
+        }
+        console.log(taskArray)
+    })
+}
+app.get('/display',(request,response)=>{
+    response.send(taskArray);
 })

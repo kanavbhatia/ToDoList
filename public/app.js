@@ -2,30 +2,39 @@ let input = $('#inp');
 let addBtn = $('#btn');
 let result = $('#res');
 let taskArray = [];
-let initialDisplay = true;
+// let initialDisplay = true;
 let updateBtn = $('#updateBtn');
 let updateText = $('#updateText');
 
+in_display();
 
-if (initialDisplay){
-    for(let i=0;i<taskArray.length;i++){
-        // $('#res').append(`<li>${taskArray[i]}</li>`)
+function in_display(){
+    $.get('/display',function(body){
+        console.log(body);
+        for(i = 0;i<body.length;i++){
+            display(body[i]);
+        }
+    })
+}
+// if (initialDisplay){
+//     for(let i=0;i<taskArray.length;i++){
+//         // $('#res').append(`<li>${taskArray[i]}</li>`)
 
-        let li = document.createElement('li');
-        let text = document.createTextNode(taskArray[i]);
-        let rbtn = document.createElement('button')
-        let ubtn = document.createElement('button')
-        let hr = document.createElement('hr')
-        rbtn.append('Remove')
-        ubtn.append('Update')
-        li.append(text);
-        li.append(ubtn);
-        li.append(rbtn);
-        li.append(hr)
-        result.append(li);
-        console.log(taskArray)
-        initialDisplay = false
-}}
+//         let li = document.createElement('li');
+//         let text = document.createTextNode(taskArray[i]);
+//         let rbtn = document.createElement('button')
+//         let ubtn = document.createElement('button')
+//         let hr = document.createElement('hr')
+//         rbtn.append('Remove')
+//         ubtn.append('Update')
+//         li.append(text);
+//         li.append(ubtn);
+//         li.append(rbtn);
+//         li.append(hr)
+//         result.append(li);
+//         console.log(taskArray)
+//         initialDisplay = false
+// }}
 
 
 addBtn.click(function(){
@@ -41,7 +50,7 @@ input.keypress(function(){
 
 function display(){
     var value = '';
-    value=$('#inp').val()
+    value = input.val()
     let v = taskArray.length
     taskArray.push(value)
     for(let i=v;i<taskArray.length;i++){
@@ -60,14 +69,20 @@ function display(){
         li.append(hr)
         result.append(li);
         console.log(taskArray)    
-        req()
+        add(value)
         rbtn.addEventListener('click', function(){
             let index = taskArray.indexOf(value)
+            // let r =  rbtn.parentElement(this.innerHTML)
+            // console.log(r)
             li.remove()
             taskArray.splice(index,1)
-            console.log('Remove button pressed')
-            console.log(taskArray)
-            req()
+            // console.log('Remove button pressed')
+            // console.log(taskArray)
+            // taskArray.removeChild(this.parentElement);
+            // $.post(`/del`,{'body': value})
+            del(value)
+            // del(index)
+            
         //jis bhi remove button ko click hoyega uski li ko remove karna hai 
             })
             ubtn.addEventListener('click',function(){
@@ -83,9 +98,9 @@ function display(){
                     // taskArray.splice(index,0,newVal)
                     // //to remove old value
                     // taskArray.splice((index+1),1)
-                    let oldWorld = value;
-                    result = oldWorld.replace(value, newVal)
-                    req()
+                    let oldValue = value;
+                    // result = oldValue.replace(value, newVal)
+                    upd(oldValue, newVal)
                     // initialDisplay()
                 })
                 console.log(taskArray)
@@ -103,13 +118,20 @@ function display(){
 
 
 // to send data to database
-function req(){
-    let url = `/list`;
-    fetch(url,{
-        method:'POST',
-        body: taskArray
-    })  
-    // $.post(`/list`,{'body': input.val()})
+function add(value){
+    // let url = `/list`;
+    // fetch(url,{
+    //     method:'POST',
+    //     body: taskArray
+    // })  
+    $.post(`/add`,{'body': value})
+}
+function del(value){
+    $.post(`/del`,{'body': value})
+}
+
+function upd(value, newValue){
+    $.post(`/update`,{'body': value, newValue})
 }
 //instead of sending whole array can we send only one element which needs to be send   ???
 

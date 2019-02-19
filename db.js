@@ -11,25 +11,60 @@ function connect(){
         console.log('Connected successfully to database');
         let db = client.db(dbname);
         collection = db.collection('list')
+        useNewUrlParser: true
 })
 }
 //inserting data in database
-function dataSend(value){
- collection.insertMany([value], function(err,result){
+// function dataSend(value){
+//  collection.insertMany([value], function(err,result){
+//     if (err) throw err;
+//     console.log(result)
+// })
+// }
+
+//taking out data from database
+function dataSendBack(cb){
+    collection.find({}).toArray(function(err,result){
     if (err) throw err;
-    console.log(result)
+    console.log(result);
+    arr = []
+    for(i = 0; (i<result.length); i++){
+        arr.push(result[i].body)
+    }
+    cb(arr)
 })
 }
-//taking out data from database
-function dataRecieved(){
-    collection('tasks').find({}).toArray(function(err,result){
+function dataAdd(data){
+    collection.insertOne(data, function(err,result){
+       if (err) throw err;
+       console.log(result)
+   })
+   }
+function dataDel(data){
+    collection.deleteOne({'body': data}, function(err, res) {
         if (err) throw err;
-        console.log(result);
-    })
+        console.log("1 document deleted");
+        // db.close();
+})
 }
+
+function updateData(oldValue, newValue){
+    collection.updateOne(
+        {'body': oldValue},
+        {$set: {'body': newValue}},
+         function(err,res){
+             if (err) throw err;
+             console.log('Value Updated')
+            //  console.log(body)
+         })
+}
+
+
 
 module.exports ={
     connect,
-    dataSend,
-    dataRecieved
+    dataSendBack,
+    dataAdd,
+    dataDel,
+    updateData
 }
