@@ -5,14 +5,26 @@
     <title>To do List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Kanav's List</h1>
+    <h1>To Do List</h1>
     <div id ='mainn' >
-        <input type="text" id='inp'>
-        <button id='btn'>Add</button>
+        <!-- <input type="text" id='inp'> -->
+        <input class="form-control form-control-lg" type="text" id='inp' placeholder="To do...">
+        <button class="btn btn-primary btn-lg" id='btn' type="submit">Add</button>
+<!-- 
         <input type="text" id='updateText' disabled>
-        <button id='updateBtn' disabled>Update</button>
+        <button type="button" class="btn btn-light" disabled>Update</button> -->
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id='updateText' placeholder="Update Text" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="updateBtn" disabled>Update</button>
+            </div>
+        </div>
+          
+          
     </div>
     <ol id="res">
 

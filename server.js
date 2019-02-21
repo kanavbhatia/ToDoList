@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.listen(port, function(){
     console.log(`Process is running at Port number ${port}`);
     db.connect();
-    fillList();
 })
 
 app.post('/add', (request,response)=>{
@@ -56,9 +55,8 @@ function fillList(){
         for(i = 0; i<body.length;i++){
             taskArray.push(body[i])
         }
-        console.log(taskArray)
     })
 }
-app.get('/display',(request,response)=>{
+app.get('/in_display',(request,response)=>{
     response.send(taskArray);
 })

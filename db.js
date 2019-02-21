@@ -26,11 +26,12 @@ function connect(){
 function dataSendBack(cb){
     collection.find({}).toArray(function(err,result){
     if (err) throw err;
-    console.log(result);
     arr = []
     for(i = 0; (i<result.length); i++){
         arr.push(result[i].body)
     }
+    console.log(result);
+    console.log(arr)
     cb(arr)
 })
 }

@@ -5,68 +5,61 @@ let taskArray = [];
 // let initialDisplay = true;
 let updateBtn = $('#updateBtn');
 let updateText = $('#updateText');
+let tempArr = [];
 
 in_display();
 
 function in_display(){
-    $.get('/display',function(body){
+    if (taskArray != tempArr){
+        $.get('/in_display',function(body){
         console.log(body);
         for(i = 0;i<body.length;i++){
-            display(body[i]);
-        }
-    })
+            let value = Object.values(body[i])
+            tempArr.push(body[i])
+            display(value[0]);
+            }
+        })
+    }
 }
-// if (initialDisplay){
-//     for(let i=0;i<taskArray.length;i++){
-//         // $('#res').append(`<li>${taskArray[i]}</li>`)
 
-//         let li = document.createElement('li');
-//         let text = document.createTextNode(taskArray[i]);
-//         let rbtn = document.createElement('button')
-//         let ubtn = document.createElement('button')
-//         let hr = document.createElement('hr')
-//         rbtn.append('Remove')
-//         ubtn.append('Update')
-//         li.append(text);
-//         li.append(ubtn);
-//         li.append(rbtn);
-//         li.append(hr)
-//         result.append(li);
-//         console.log(taskArray)
-//         initialDisplay = false
-// }}
 
 
 addBtn.click(function(){
-    display()
+    display(input.val())
     input = input.val('')
 })
 input.keypress(function(){
     if (event.keyCode ==13){
-        display()
+        display(input.val())
        input = input.val('')
     } 
 })
 
-function display(){
-    var value = '';
-    value = input.val()
+function display(value){
+    // var value = '';
+    // value = input.val()
     let v = taskArray.length
     taskArray.push(value)
     for(let i=v;i<taskArray.length;i++){
         let li = document.createElement('li');
+        li.setAttribute('class','list-group-item list-group-item-action')
         let text = document.createTextNode(taskArray[i]);
         let rbtn = document.createElement('button')
+        rbtn.setAttribute('class','butt')
+        rbtn.setAttribute('class','btn btn-danger')
         let ubtn = document.createElement('button') 
+        ubtn.setAttribute('class','butt')
+        ubtn.setAttribute('class','btn btn-secondary')
+        
         // let checkbox = document.createElement('input')
-        let hr = document.createElement('hr')
+        // let hr = document.createElement('hr')
         rbtn.append('Remove')
         ubtn.append('Update')
         li.append(text);
         // console.log(li.appendChild(text));
         li.append(ubtn);
         li.append(rbtn);
-        li.append(hr)
+        // li.append(hr)
         result.append(li);
         console.log(taskArray)    
         add(value)
@@ -90,6 +83,7 @@ function display(){
                 let index = taskArray.indexOf(value) // why taking value refered here?
                 updateBtn.removeAttr('disabled');
                 updateText.removeAttr('disabled');
+                
                 updateBtn.click(function(){
                     // let index = taskArray.indexOf(value) 
                     console.log('Value updated')
