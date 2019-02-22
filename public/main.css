@@ -1,13 +1,14 @@
 *{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
     /* transition: 2s; */
+    /* background-color: red; */
     
 }
 li:hover{
     background-color: #27293b;
 }
-li:active{
-   text-decoration: double
+li p:active{
+    text-decoration: line-through;
 }
 #removal{
     float: right;
@@ -21,40 +22,51 @@ body{
 }
 ol{
     margin: 2em 10em 0em 10em;
+    margin: auto;
+    width: 80vw;
+    padding: 0em;
 }
 hr{
     margin: 0em;
     color: #dfe6e8;
 }
-li{
+#res li{
     /* padding: 0.8em 0em 0.2em 0; */
-    
-    margin: 2em 0em 0em 0em;
+    width: 67%;
+    margin: auto;
+    /* margin: 0.1em 0em 0em 0em; */
 }
 .list-group-item list-group-item-action{
     padding-bottom: 1.4em;
 }
 
 #mainn{
-    margin: 1em 10em 0em 12em;
+    margin: 4em 10em 0em 12em;
 }
 
 #inp{
     width: 70%;
     display: inline-block;
+    margin-bottom: 1em;
+}
+.mb-3{
+    width: 80%;
 }
 
-/* #updateText{
-    /* display: none; }*/
+#updateText{
+     /* display: none;  */
+         margin: 0em 1em 0em 0em; 
+    }
 
-/* #updateBtn{
+#updateBtn{
     /* display: none; */
     /* background-color: #c25ed4 */
-    /* width: 50%; }*/
- */ */
-#btn{
-    background-color: #c25ed4
-}
+    margin-right: 1em;
+ }
+
+/* #btn{
+    /* background-color: #c25ed4 
+} */
 .btn-secondary{
     float: right;
     margin-left: 1em;
@@ -64,4 +76,35 @@ li{
 }
 .input-group mb-3{
     width: 50%;
+}
+#lol{
+    width: 80%;
+    border-style:  solid; 
+    margin: 2em auto;
+    padding: 10vh 0vh 22vh 0vh;;
+    background-color: #CDE8F3;
+    height: 93vh;
+}
+h1{
+    color: #343633;
+    text-align: center;
+    margin-bottom: 1em;
+}
+p{
+    display: inline-block;
+    font-size: 1.4em;
+    margin-bottom: 0.5rem;
+}
+.list{
+    margin: 2em 0em 2em 0em;
+}
+
+@media  (max-width: 900px){
+    #mainn{
+        margin: 2em 0em 0em 1em;
+    }
+    #res li{
+        width: 92%;
+        margin: auto;
+    }
 }

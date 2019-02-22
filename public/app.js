@@ -43,7 +43,9 @@ function display(value){
     for(let i=v;i<taskArray.length;i++){
         let li = document.createElement('li');
         li.setAttribute('class','list-group-item list-group-item-action')
+        var para = document.createElement("p");
         let text = document.createTextNode(taskArray[i]);
+        para.appendChild(text);
         let rbtn = document.createElement('button')
         rbtn.setAttribute('class','butt')
         rbtn.setAttribute('class','btn btn-danger')
@@ -55,7 +57,7 @@ function display(value){
         // let hr = document.createElement('hr')
         rbtn.append('Remove')
         ubtn.append('Update')
-        li.append(text);
+        li.append(para);
         // console.log(li.appendChild(text));
         li.append(ubtn);
         li.append(rbtn);
@@ -63,6 +65,9 @@ function display(value){
         result.append(li);
         console.log(taskArray)    
         add(value)
+        li.addEventListener('click', function(){
+            para.style.textDecoration = 'line-through';
+        })
         rbtn.addEventListener('click', function(){
             let index = taskArray.indexOf(value)
             // let r =  rbtn.parentElement(this.innerHTML)
@@ -85,13 +90,14 @@ function display(value){
                 updateText.removeAttr('disabled');
                 
                 updateBtn.click(function(){
-                    // let index = taskArray.indexOf(value) 
+                    let index = taskArray.indexOf(value) 
                     console.log('Value updated')
                     let newVal = updateText.val()
                     // //to add new value
-                    // taskArray.splice(index,0,newVal)
+                    taskArray.splice(index,0,newVal)
                     // //to remove old value
-                    // taskArray.splice((index+1),1)
+                    taskArray.splice((index+1),1)
+                    
                     let oldValue = value;
                     // result = oldValue.replace(value, newVal)
                     upd(oldValue, newVal)
