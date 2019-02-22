@@ -42,7 +42,7 @@ function dataAdd(data){
    })
    }
 function dataDel(data){
-    collection.deleteOne({'body': data}, function(err, res) {
+    collection.deleteMany({'body': data}, function(err, res) {
         if (err) throw err;
         console.log("1 document deleted");
         // db.close();
