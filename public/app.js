@@ -82,8 +82,8 @@ function display(value){
             let index = taskArray.indexOf(value)
             // let r =  rbtn.parentElement(this.innerHTML)
             // console.log(r)
-            li.remove()
             taskArray.splice(index,1)
+            li.remove()
             // console.log('Remove button pressed')
             // console.log(taskArray)
             // taskArray.removeChild(this.parentElement);

@@ -30,11 +30,11 @@ app.post('/add', (request,response)=>{
 app.post('/del', (request,response)=>{
     let data = Object.values(request.body)[0];
     //to get the value from the object which we are getting
-    let data1 = request.body
+    // let data1 = request.body;
     console.log(data1);
-    console.log(data);
+    // console.log(data);
     let index = taskArray.indexOf(data);
-    taskArray.splice(index,1)
+    taskArray.splice(index,1);
     db.dataDel(data)
     // db.dataSend({'task': request.body})
     response.status(200)
