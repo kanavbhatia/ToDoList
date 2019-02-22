@@ -6,6 +6,8 @@ let taskArray = [];
 let updateBtn = $('#updateBtn');
 let updateText = $('#updateText');
 let tempArr = [];
+let counter=1;
+
 
 in_display();
 
@@ -48,10 +50,10 @@ function display(value){
         para.appendChild(text);
         let rbtn = document.createElement('button')
         rbtn.setAttribute('class','butt')
-        rbtn.setAttribute('class','btn btn-danger')
+        rbtn.setAttribute('class','btn btn-danger btn-sm')
         let ubtn = document.createElement('button') 
         ubtn.setAttribute('class','butt')
-        ubtn.setAttribute('class','btn btn-secondary')
+        ubtn.setAttribute('class','btn btn-secondary btn-sm')
         
         // let checkbox = document.createElement('input')
         // let hr = document.createElement('hr')
@@ -66,7 +68,15 @@ function display(value){
         console.log(taskArray)    
         add(value)
         li.addEventListener('click', function(){
-            para.style.textDecoration = 'line-through';
+            if (counter==1){
+                para.style.textDecoration = 'line-through';
+                counter=0;
+            }
+            else{
+                para.style.textDecoration = '';
+                counter=1;
+            }
+            
         })
         rbtn.addEventListener('click', function(){
             let index = taskArray.indexOf(value)

@@ -4,8 +4,8 @@
     /* background-color: red; */
     
 }
-li:hover{
-    background-color: #27293b;
+#res li:hover{
+    background-color: #F1F8FB;
 }
 li p:active{
     text-decoration: line-through;
@@ -107,5 +107,10 @@ p{
     #res li{
         width: 92%;
         margin: auto;
+    }
+    li .btn {
+        border-radius: 10px;
+        line-height: 1;
+        margin: 0.5em 0em 0em 0em;
     }
 }
