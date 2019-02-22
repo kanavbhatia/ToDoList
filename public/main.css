@@ -78,12 +78,13 @@ hr{
     width: 50%;
 }
 #lol{
+    /* position: sticky; */
     width: 80%;
     border-style:  solid; 
     margin: 2em auto;
     padding: 10vh 0vh 22vh 0vh;;
     background-color: #CDE8F3;
-    height: 93vh;
+    /* height: 93vh; */
 }
 h1{
     color: #343633;
